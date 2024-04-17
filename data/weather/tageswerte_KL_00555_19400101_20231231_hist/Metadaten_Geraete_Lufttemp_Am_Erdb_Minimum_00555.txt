@@ -1,5 +1,5 @@
 Stations_ID;Stationsname;Geo. Laenge [Grad];Geo. Breite [Grad];Stationshoehe [m];Geberhoehe ueber Grund [m];Von_Datum;Bis_Datum;Geraetetyp Name;Messverfahren;eor;
-555;Bochum;;;;;19400101;19510331;Ger‰tetyp unbekannt;Temperaturmessung, konv.;eor;
+555;Bochum;;;;;19400101;19510331;Ger√§tetyp unbekannt;Temperaturmessung, konv.;eor;
 555;Bochum;7.21;51.49;83;.05;19510401;19510422;Minimumthermometer;Temperaturmessung, konv.;eor;
 555;Bochum;7.22;51.49;81;.05;19510423;19611231;Minimumthermometer;Temperaturmessung, konv.;eor;
 555;Bochum;7.22;51.5;79;.05;19620101;19680705;Minimumthermometer;Temperaturmessung, konv.;eor;

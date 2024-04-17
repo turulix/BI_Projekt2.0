@@ -1,5 +1,5 @@
 Stations_ID;Stationsname;Von_Datum;Bis_Datum
-  5705;Würzburg;19360501;
+  5705;WÃ¼rzburg;19360501;
 
 Stations_ID;Betreibername;Von_Datum;Bis_Datum
   5705;Wetterdienst;19360501;19521110

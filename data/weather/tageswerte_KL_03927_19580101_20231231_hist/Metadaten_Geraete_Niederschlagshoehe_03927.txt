@@ -8,5 +8,5 @@ Stations_ID;Stationsname;Geo. Laenge [Grad];Geo. Breite [Grad];Stationshoehe [m]
 3927;Pfullendorf-Brunnhausen;9.29;47.92;638;1;19841001;20030630;Hellmann;Niederschlagsmenge, konv.;eor;
 3927;Pfullendorf;9.29;47.93;629.5;1;20031101;20040630;Hellmann;Niederschlagsmenge, konv.;eor;
 3927;Pfullendorf;9.29;47.93;629.5;1.5;20040701;20200331;PLUVIO;Niederschlagsmenge, elektr.;eor;
-3927;Pfullendorf;9.29;47.93;629.5;1.5;20200401;20240328;rain[e]H3, Wägetechnologie;Niederschlagsmenge, elektr.;eor;
+3927;Pfullendorf;9.29;47.93;629.5;1.5;20200401;20240328;rain[e]H3, WÃ¤getechnologie;Niederschlagsmenge, elektr.;eor;
 generiert: 03.04.2024 --  Deutscher Wetterdienst  --

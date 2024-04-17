@@ -1,5 +1,5 @@
 Stations_ID;Stationsname;Geo. Laenge [Grad];Geo. Breite [Grad];Stationshoehe [m];Geberhoehe ueber Grund [m];Von_Datum;Bis_Datum;Geraetetyp Name;Messverfahren;eor;
-3631;Norderney;;;;;18580301;19271231;Ger‰tetyp unbekannt;Feuchteregistrierung, konv.;eor;
+3631;Norderney;;;;;18580301;19271231;Ger√§tetyp unbekannt;Feuchteregistrierung, konv.;eor;
 3631;Norderney;7.15;53.71;2;1.9;19280101;19340330;Hygrograph nach Frankenberg;Feuchteregistrierung, konv.;eor;
 3631;Norderney;7.15;53.71;7;1.9;19340331;19380331;Hygrograph nach Frankenberg;Feuchteregistrierung, konv.;eor;
 3631;Norderney;7.15;53.7;4;1.9;19380401;19470430;Hygrograph nach Frankenberg;Feuchteregistrierung, konv.;eor;

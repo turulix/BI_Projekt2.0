@@ -10,5 +10,5 @@ Stations_ID;Stationsname;Geo. Laenge [Grad];Geo. Breite [Grad];Stationshoehe [m]
 1757;Greifswald;13.41;54.1;2;1;20030121;20060831;NG 200;Niederschlagsdauer, -menge, elektr.;eor;
 1757;Greifswald;13.41;54.1;2;1;20060901;20061009;NG 200;Niederschlagsdauer, -menge, elektr.;eor;
 1757;Greifswald;13.41;54.1;2;1;20060901;20100812;Niederschlags-Detektor;Niederschlagsdauer, elektr.;eor;
-1757;Greifswald;13.41;54.1;2;1;20100525;20240328;Niederschlagsw‰chter;Niederschlagsdauer, elektr.;eor;
+1757;Greifswald;13.41;54.1;2;1;20100525;20240328;Niederschlagsw√§chter;Niederschlagsdauer, elektr.;eor;
 generiert: 03.04.2024 --  Deutscher Wetterdienst  --

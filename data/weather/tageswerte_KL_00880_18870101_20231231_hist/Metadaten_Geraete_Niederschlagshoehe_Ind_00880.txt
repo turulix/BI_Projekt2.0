@@ -8,5 +8,5 @@ Stations_ID;Stationsname;Geo. Laenge [Grad];Geo. Breite [Grad];Stationshoehe [m]
 880;Cottbus;14.32;51.78;68.66;1;20000328;20040815;Niederschlags-Detektor;Niederschlagsdauer, elektr.;eor;
 880;Cottbus;14.32;51.78;68.66;1;20040818;20080623;NG 200;Niederschlagsdauer, -menge, elektr.;eor;
 880;Cottbus;14.32;51.78;68.66;1;20040818;20101026;Niederschlags-Detektor;Niederschlagsdauer, elektr.;eor;
-880;Cottbus;14.32;51.78;68.66;1;20101002;20240328;Niederschlagsw‰chter;Niederschlagsdauer, elektr.;eor;
+880;Cottbus;14.32;51.78;68.66;1;20101002;20240328;Niederschlagsw√§chter;Niederschlagsdauer, elektr.;eor;
 generiert: 03.04.2024 --  Deutscher Wetterdienst  --
