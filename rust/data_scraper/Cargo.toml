@@ -1,0 +1,20 @@
+[package]
+name = "data_scraper"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+tokio = { workspace = true }
+env_logger = { workspace = true }
+
+reqwest = {version = "0.12.4", features = ["json"]}
+anyhow = "1.0.83"
+scraper = { version = "0.19.0", features = ["errors"] }
+log = "0.4.21"
+sqlx = { version = "0.7.4", features = ["runtime-tokio-rustls", "postgres"] }
+config = "0.14.0"
+serde = { version = "1.0.201", features = ["derive"] }
+serde_json = "1.0.117"
+chrono = { version = "0.4.38", features = ["serde"] }
+tempfile = "3.10.1"
+calamine = "0.24.0"
