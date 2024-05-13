@@ -98,3 +98,66 @@ pub async fn parse_uebernachtungen_nach_herkunftsland(
     }
     Ok(data)
 }
+
+#[derive(Serialize, Deserialize, Debug)]
+pub struct UebernachtungenProLandStruct {
+    pub land: String,
+    pub wohnsitz: String,
+    pub jahr: i64,
+    pub monat: String,
+    pub ankuenfte_anzahl: Option<i64>,
+    pub ankuenfte_veraenderung_zum_vorjahreszeitraum_prozent: Option<f64>,
+    pub uebernachtungen_anzahl: Option<i64>,
+    pub uebernachtungen_veraenderung_zum_vorjahreszeitraum_prozent: Option<f64>,
+    pub durchsch_aufenthaltsdauer_tage: Option<f64>,
+}
+
+//noinspection DuplicatedCode
+pub async fn parse_uebernachtungen_pro_land(
+    data: Range<Data>,
+) -> Result<Vec<UebernachtungenProLandStruct>, anyhow::Error> {
+    let mut rows = data.rows();
+
+    let headers = rows
+        .next()
+        .ok_or(anyhow::anyhow!("No headers found"))?
+        .iter()
+        .map(|x| x.to_string().trim().to_string())
+        .collect::<Vec<String>>();
+
+    trace!("{:?}", headers);
+    let mut data = Vec::new();
+    for row in rows {
+        let hashmap: HashMap<String, &Data> = headers.iter().cloned().zip(row.iter()).collect();
+        info!("{:?}", hashmap);
+        data.push(UebernachtungenProLandStruct {
+            land: hashmap.get("Land").unwrap().to_string(),
+            wohnsitz: hashmap.get("Wohnsitz").unwrap().to_string(),
+            jahr: hashmap
+                .get("Jahr")
+                .unwrap()
+                .as_i64()
+                .ok_or(anyhow::anyhow!("Failed to parse Jahr"))?,
+            monat: hashmap
+                .get("Monat")
+                .unwrap()
+                .as_string()
+                .ok_or(anyhow::anyhow!("Failed to parse Monat"))?,
+            ankuenfte_anzahl: hashmap.get("Ankuenfte_Anzahl").unwrap().as_i64(),
+            ankuenfte_veraenderung_zum_vorjahreszeitraum_prozent: hashmap
+                .get("Ankuenfte_Veraenderung_zum_Vorjahreszeitraum_Prozent")
+                .unwrap()
+                .as_f64(),
+            uebernachtungen_anzahl: hashmap.get("Uebernachtungen_Anzahl").unwrap().as_i64(),
+            uebernachtungen_veraenderung_zum_vorjahreszeitraum_prozent: hashmap
+                .get("Uebernachtungen_Veraenderung_zum_Vorjahreszeitraum_Prozent")
+                .unwrap()
+                .as_f64(),
+            durchsch_aufenthaltsdauer_tage: hashmap
+                .get("Durchsch_Aufenthaltsdauer_Tage")
+                .unwrap()
+                .as_f64(),
+        });
+    }
+    Ok(data)
+}

@@ -1,7 +1,4 @@
-use crate::helpers::{
-    download_derivative_information, download_derivative_to_file, get_table_of_contents,
-    load_xlsx_file, parse_uebernachtungen_nach_herkunftsland, Derivative,
-};
+use crate::helpers::{download_derivative_information, download_derivative_to_file, get_table_of_contents, load_xlsx_file, parse_uebernachtungen_nach_herkunftsland, Derivative, parse_uebernachtungen_pro_land};
 use log::{info, trace};
 
 mod helpers;
@@ -25,9 +22,11 @@ async fn main() -> Result<(), anyhow::Error> {
         let file = download_derivative_to_file(&client, &derivative_info.children[0]).await?;
 
         let parsed_file = load_xlsx_file(&file).await?;
-        let overnight = parse_uebernachtungen_nach_herkunftsland(parsed_file.uebernachtungen_nach_herkunftsland).await?;
+        let overnight_by_origin = parse_uebernachtungen_nach_herkunftsland(parsed_file.uebernachtungen_nach_herkunftsland).await?;
+        let overnight_by_country = parse_uebernachtungen_pro_land(parsed_file.uebernachtungen_pro_land).await?;
 
-        info!("{:?}", overnight);
+        info!("{:?}", overnight_by_origin);
+        info!("{:?}", overnight_by_country);
         
         break;
     }
