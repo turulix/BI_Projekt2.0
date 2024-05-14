@@ -2,8 +2,6 @@ use std::fs::File;
 use log::warn;
 use reqwest::Client;
 use serde::{Deserialize, Serialize};
-use tempfile::SpooledTempFile;
-
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ObjectsResponse {
     #[serde(rename = "numFound")]

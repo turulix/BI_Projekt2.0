@@ -1,0 +1,21 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "INSERT INTO original_data.uebernachtungen_nach_herkunftsland (herkunftsregion, jahr, monat, ankuenfte_anzahl,\r\n                                                              ankuenfte_veraenderung_zum_vorjahreszeitraum_prozent,\r\n                                                              uebernachtungen_anzahl,\r\n                                                              uebernachtungen_veraenderung_zum_vorjahreszeitraum_prozent,\r\n                                                              durchsch_aufenthaltsdauer_tage)\r\nVALUES ($1, $2, $3, $4, $5, $6, $7, $8);\r\n",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Text",
+        "Int8",
+        "Text",
+        "Int8",
+        "Float8",
+        "Int8",
+        "Float8",
+        "Float8"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "22df83bee2c4d7d50ce16ff08f3ac1fbd69570116c8fffc2f5b3c71894525f48"
+}
