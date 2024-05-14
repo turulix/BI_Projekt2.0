@@ -93,6 +93,14 @@ async fn main() -> Result<(), anyhow::Error> {
 
             tx.commit().await?;
         }
+        let sleep_duration = std::time::Duration::from_secs(60 * 60 * 12);
+        info!(
+            "Sleeping for 12 hours before fetching again. Next Execution: {}",
+            (chrono::Local::now() + sleep_duration)
+                .format("%Y-%m-%d %H:%M:%S")
+                .to_string()
+        );
+        tokio::time::sleep(sleep_duration).await;
     }
 }
 
