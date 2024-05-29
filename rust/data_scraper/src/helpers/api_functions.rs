@@ -1,7 +1,9 @@
 use std::fs::File;
+
 use log::warn;
 use reqwest::Client;
 use serde::{Deserialize, Serialize};
+
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ObjectsResponse {
     #[serde(rename = "numFound")]
@@ -89,12 +91,13 @@ pub async fn download_derivative_to_file(
         anyhow::anyhow!("Failed to download derivative: {}, {}", &derivative.href, e)
     })?;
 
-    let mut file = tempfile::tempfile().map_err(|e| anyhow::anyhow!("Failed to create tempfile: {}", e))?;
+    let mut file =
+        tempfile::tempfile().map_err(|e| anyhow::anyhow!("Failed to create tempfile: {}", e))?;
     let stream = response
         .bytes()
         .await
         .map_err(|e| anyhow::anyhow!("Failed to get bytes: {}", e))?;
-    
+
     std::io::copy(&mut stream.as_ref(), &mut file)
         .map_err(|e| anyhow::anyhow!("Failed to copy bytes: {}", e))?;
 

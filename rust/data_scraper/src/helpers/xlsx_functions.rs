@@ -1,10 +1,10 @@
 use std::collections::HashMap;
 use std::fs::File;
 
-use calamine::{open_workbook_auto_from_rs, Data, Range, Reader};
+use calamine::{Data, open_workbook_auto_from_rs, Range, Reader};
 use log::{info, trace};
-use serde::de::DeserializeOwned;
 use serde::{de, Deserialize, Deserializer, Serialize};
+use serde::de::DeserializeOwned;
 use serde_json::Value;
 
 pub struct XlsxData {

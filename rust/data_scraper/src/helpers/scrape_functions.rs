@@ -1,6 +1,7 @@
 use log::trace;
 use reqwest::Client;
 use scraper::Selector;
+
 #[derive(Debug)]
 #[allow(dead_code)]
 pub struct TableOfContent {
