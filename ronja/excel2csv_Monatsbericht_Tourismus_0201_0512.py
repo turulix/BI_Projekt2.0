@@ -5,17 +5,17 @@ import pandas as pd
 import xlrd
 
 # Define the directory containing the Excel files
-input_directory = 'C:\\Users\\Ronja\\Documents\\Studium\\Semester 4\\DABI2\\Projekt\\Umsatzdaten\\DESTATIS\\Monatsbericht_Tourismus\\'
+input_directory = 'C:\\Users\\Ronja\\Documents\\Studium\\Semester 4\\DABI2\\Projekt\\Umsatzdaten\\DESTATIS\\0201_0512\\'
 
 # Create the output parent directory if it doesn't exist
-output_parent_directory = 'C:\\Users\\Ronja\\Documents\\Studium\\Semester 4\\DABI2\\Projekt\\Umsatzdaten\\DESTATIS\\Output\\'
+output_parent_directory = 'C:\\Users\\Ronja\\Documents\\Studium\\Semester 4\\DABI2\\Projekt\\Umsatzdaten\\DESTATIS\\Output\\0201_0512\\'
 os.makedirs(output_parent_directory, exist_ok=True)
 
 # Define a dictionary to specify row ranges and columns for each sheet
 sheet_specs = {
-    '1.8': {'row_range': (15, 67), 'columns': ['A', 'B', 'C', 'D', 'E', 'F']},
-    '1.9': {'row_range': (14, 79), 'columns': ['A', 'B', 'C', 'D', 'E', 'F']},
-    '2.4': {'row_range': (4, 33), 'columns': ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']},
+    '3.1': {'row_range': (13, 81), 'columns': ['A', 'B', 'C', 'D', 'E', 'F']},
+    '3.2': {'row_range': (13, 86), 'columns': ['A', 'B', 'C', 'D', 'E', 'F']},
+    '4': {'row_range': (14, 33), 'columns': ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']},
     # Add more sheets and specifications as needed
 }
 
