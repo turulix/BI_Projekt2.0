@@ -64,9 +64,9 @@ async fn main() -> Result<(), anyhow::Error> {
             for x in overnight_by_origin {
                 let query = sqlx::query_file!(
                     "src/queries/insert_into_uebernachtungen_nach_herkunftsland.sql",
-                    x.herkunftsregion,
+                    x.herkunftsregion.trim(),
                     x.jahr,
-                    x.monat,
+                    x.monat.trim(),
                     x.ankuenfte_anzahl,
                     x.ankuenfte_veraenderung_zum_vorjahreszeitraum_prozent,
                     x.uebernachtungen_anzahl,
@@ -79,10 +79,10 @@ async fn main() -> Result<(), anyhow::Error> {
             for x in overnight_by_country {
                 let query = sqlx::query_file!(
                     "src/queries/insert_into_uebernachtungen_pro_land.sql",
-                    x.land,
-                    x.wohnsitz,
+                    x.land.trim(),
+                    x.wohnsitz.trim(),
                     x.jahr,
-                    x.monat,
+                    x.monat.trim(),
                     x.ankuenfte_anzahl,
                     x.ankuenfte_veraenderung_zum_vorjahreszeitraum_prozent,
                     x.uebernachtungen_anzahl,
