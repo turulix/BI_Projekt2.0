@@ -1,11 +1,12 @@
+use log::{info, trace};
+use serde::{Deserialize, Serialize};
+use sqlx::Executor;
+
 use crate::helpers::{
     download_derivative_information, download_derivative_to_file, get_table_of_contents,
     load_xlsx_file, parse_range, UebernachtungenNachHerkunftslandStruct,
     UebernachtungenProLandStruct,
 };
-use log::{info, trace};
-use serde::{Deserialize, Serialize};
-use sqlx::Executor;
 
 mod helpers;
 mod settings;
@@ -63,9 +64,9 @@ async fn main() -> Result<(), anyhow::Error> {
             for x in overnight_by_origin {
                 let query = sqlx::query_file!(
                     "src/queries/insert_into_uebernachtungen_nach_herkunftsland.sql",
-                    x.herkunftsregion,
+                    x.herkunftsregion.trim(),
                     x.jahr,
-                    x.monat,
+                    x.monat.trim(),
                     x.ankuenfte_anzahl,
                     x.ankuenfte_veraenderung_zum_vorjahreszeitraum_prozent,
                     x.uebernachtungen_anzahl,
@@ -78,10 +79,10 @@ async fn main() -> Result<(), anyhow::Error> {
             for x in overnight_by_country {
                 let query = sqlx::query_file!(
                     "src/queries/insert_into_uebernachtungen_pro_land.sql",
-                    x.land,
-                    x.wohnsitz,
+                    x.land.trim(),
+                    x.wohnsitz.trim(),
                     x.jahr,
-                    x.monat,
+                    x.monat.trim(),
                     x.ankuenfte_anzahl,
                     x.ankuenfte_veraenderung_zum_vorjahreszeitraum_prozent,
                     x.uebernachtungen_anzahl,

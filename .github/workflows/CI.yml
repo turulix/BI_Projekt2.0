@@ -1,0 +1,50 @@
+name: CI
+on: push
+defaults:
+  run:
+    working-directory: ./rust
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  check-rust:
+    runs-on: ubuntu-latest
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Rust Lint Cache
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            ./target/
+          key: ${{ runner.os }}-cargo-lint-${{ hashFiles('**/Cargo.lock') }}
+
+      - name: Install Rust & Dependencies
+        run: |
+          rustup install nightly
+          rustup default nightly
+          rustup component add rustfmt
+          rustup component add clippy
+
+      - name: Check Rust Format
+        run: cargo fmt --all -- --check
+
+      - name: Check Rust Clippy
+        run: cargo clippy --all-targets --all-features -- -D warnings
+
+      - name: Check Docs
+        run: cargo doc --workspace --all-features --no-deps
+
+      - name: Check Rust Tests
+        run: cargo test --all-features
+
+      - name: Run Build
+        run: cargo build --all-features
