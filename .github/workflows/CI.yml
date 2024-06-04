@@ -12,7 +12,7 @@ jobs:
   check-rust:
     runs-on: ubuntu-latest
     env:
-      SQLX_OFFLINE: true
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
     steps:
       - uses: actions/checkout@v3
 
@@ -24,7 +24,7 @@ jobs:
             ~/.cargo/registry/index/
             ~/.cargo/registry/cache/
             ~/.cargo/git/db/
-            ./backend/target/
+            ./target/
           key: ${{ runner.os }}-cargo-lint-${{ hashFiles('**/Cargo.lock') }}
 
       - name: Install Rust & Dependencies
@@ -33,7 +33,6 @@ jobs:
           rustup default nightly
           rustup component add rustfmt
           rustup component add clippy
-          ls -la .sqlx
 
       - name: Check Rust Format
         run: cargo fmt --all -- --check
