@@ -15,7 +15,7 @@ os.makedirs(output_parent_directory, exist_ok=True)
 sheet_specs = {
     '1.8': {'row_range': (15, 67), 'columns': ['A', 'B', 'C', 'D', 'E', 'F']},
     '1.9': {'row_range': (14, 79), 'columns': ['A', 'B', 'C', 'D', 'E', 'F']},
-    '2.4': {'row_range': (4, 33), 'columns': ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']},
+    '2.4': {'row_range': (13, 34), 'columns': ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']},
     # Add more sheets and specifications as needed
 }
 
