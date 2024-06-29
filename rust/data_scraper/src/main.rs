@@ -63,7 +63,7 @@ async fn main() -> Result<(), anyhow::Error> {
                         debug!("Task {} completed", task.name());
                     }
                 }
-                .await;
+                    .await;
             }
         });
     }
@@ -91,7 +91,7 @@ fn translate_to_month(month: i32) -> String {
         12 => "Dezember",
         _ => panic!("Invalid month"),
     }
-    .to_string()
+        .to_string()
 }
 
 async fn shutdown_signal_future() {
