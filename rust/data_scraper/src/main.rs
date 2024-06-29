@@ -1,17 +1,9 @@
-use google_cloud_googleapis::pubsub::v1::PubsubMessage;
 use google_cloud_pubsub::client::{Client, ClientConfig};
-use log::{debug, error, info, trace};
-use serde::{Deserialize, Serialize};
-use sqlx::Executor;
+use log::{debug, error, info};
 use tokio::{select, signal};
 use tokio::task::JoinSet;
 
 use crate::context::Context;
-use crate::helpers::{
-    download_derivative_information, download_derivative_to_file, get_table_of_contents,
-    load_xlsx_file, parse_range, UebernachtungenNachHerkunftslandStruct,
-    UebernachtungenProLandStruct,
-};
 use crate::tasks::{CronTask, CronTaskExtension};
 
 mod context;
@@ -40,7 +32,7 @@ async fn main() -> Result<(), anyhow::Error> {
         database_client: database,
     };
 
-    let tasks: Vec<Box<dyn CronTask>> = vec![tasks::GetSleepoverData.into_boxed()];
+    let tasks: Vec<Box<dyn CronTask>> = vec![tasks::GetSleepoverDataTask.into_boxed()];
 
     let mut join_set = JoinSet::new();
     for task in tasks {

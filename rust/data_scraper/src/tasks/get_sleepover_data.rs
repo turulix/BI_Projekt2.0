@@ -12,10 +12,10 @@ use crate::helpers::{
 use crate::tasks::CronTask;
 use crate::translate_to_month;
 
-pub struct GetSleepoverData;
+pub struct GetSleepoverDataTask;
 
 #[async_trait]
-impl CronTask for GetSleepoverData {
+impl CronTask for GetSleepoverDataTask {
     fn name(&self) -> &'static str {
         "GetSleepoverData"
     }
