@@ -1,3 +1,5 @@
+use google_cloud_googleapis::pubsub::v1::PubsubMessage;
+use google_cloud_pubsub::client::{Client, ClientConfig};
 use log::{info, trace};
 use serde::{Deserialize, Serialize};
 use sqlx::Executor;
@@ -15,6 +17,8 @@ mod settings;
 async fn main() -> Result<(), anyhow::Error> {
     env_logger::init();
     let settings = settings::Settings::new().expect("Unable to load settings");
+    let gcloud_config = ClientConfig::default().with_auth().await.unwrap();
+    let pub_sub_client = Client::new(gcloud_config).await.unwrap();
 
     let client = reqwest::Client::builder()
         .timeout(std::time::Duration::from_secs(15))
@@ -22,9 +26,31 @@ async fn main() -> Result<(), anyhow::Error> {
 
     let database = sqlx::PgPool::connect(&settings.database_url).await?;
     info!("Connected to database");
+    
+    let pub_sub_topic = pub_sub_client.topic("new-data-added");
+    if !pub_sub_topic.exists(None).await? { 
+        pub_sub_topic.create(None, None).await?;
+    }
+    
+    let publisher = pub_sub_topic.new_publisher(None);
+    
+    // FOR TESTING PURPOSES WE WILL SEND A MESSAGE TO THE TOPIC EVERY 5 MINUTES
+    let publisher_clone = publisher.clone();
+    tokio::spawn(async move {
+        loop {
+            let awaiter = publisher_clone.clone().publish(PubsubMessage{
+                data: b"new data added".to_vec(),
+                ..Default::default()
+            }).await;
+            awaiter.get().await.unwrap();
+            info!("Published new data added message to pubsub");
+            tokio::time::sleep(std::time::Duration::from_secs(60 * 5)).await;
+        }
+    });
 
     loop {
         let table_of_contents = get_table_of_contents(&client).await?;
+        let mut new_data_added = false;
         info!("Successfully fetched '{}' files", table_of_contents.len());
 
         #[derive(Debug, Serialize, Deserialize)]
@@ -45,6 +71,8 @@ async fn main() -> Result<(), anyhow::Error> {
                 info!("Skipping: {} {}, we already have those.", x.year, x.month);
                 continue;
             }
+            
+            new_data_added = true;
 
             let derivative_info = download_derivative_information(&client, &x.mods_id).await?;
             trace!("{:?}", derivative_info);
@@ -94,6 +122,16 @@ async fn main() -> Result<(), anyhow::Error> {
 
             tx.commit().await?;
         }
+        
+        if new_data_added {
+            let awaiter = publisher.publish(PubsubMessage{
+                data: b"new data added".to_vec(),
+                ..Default::default()
+            }).await;
+            awaiter.get().await?;
+            info!("Published new data added message to pubsub")
+        }
+        
         let sleep_duration = std::time::Duration::from_secs(60 * 60 * 12);
         info!(
             "Sleeping for 12 hours before fetching again. Next Execution: {}",
