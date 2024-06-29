@@ -1,7 +1,7 @@
 use google_cloud_pubsub::client::{Client, ClientConfig};
 use log::{debug, error, info};
-use tokio::{select, signal};
 use tokio::task::JoinSet;
+use tokio::{select, signal};
 
 use crate::context::Context;
 use crate::tasks::{CronTask, CronTaskExtension};
@@ -63,7 +63,7 @@ async fn main() -> Result<(), anyhow::Error> {
                         debug!("Task {} completed", task.name());
                     }
                 }
-                    .await;
+                .await;
             }
         });
     }
@@ -91,7 +91,7 @@ fn translate_to_month(month: i32) -> String {
         12 => "Dezember",
         _ => panic!("Invalid month"),
     }
-        .to_string()
+    .to_string()
 }
 
 async fn shutdown_signal_future() {
