@@ -1,6 +1,7 @@
 use crate::settings::Settings;
 
 #[derive(Clone)]
+#[allow(dead_code)]
 pub struct Context {
     pub settings: Settings,
     pub http_client: reqwest::Client,
