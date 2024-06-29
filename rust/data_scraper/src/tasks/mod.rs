@@ -1,6 +1,8 @@
 mod get_sleepover_data;
+mod send_dummy_event;
 
-pub use get_sleepover_data::GetSleepoverData;
+pub use get_sleepover_data::GetSleepoverDataTask;
+pub use send_dummy_event::SendDummyEventTask;
 
 
 use async_trait::async_trait;
