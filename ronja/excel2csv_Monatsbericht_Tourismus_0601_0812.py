@@ -100,3 +100,5 @@ for filename in os.listdir(input_directory):
 
                 # Save the extracted data to a CSV file
                 df.to_csv(output_path, index=False)
+
+#%%
