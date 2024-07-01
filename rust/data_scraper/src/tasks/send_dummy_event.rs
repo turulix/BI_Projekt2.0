@@ -7,10 +7,10 @@ use google_cloud_googleapis::pubsub::v1::PubsubMessage;
 use crate::context::Context;
 use crate::tasks::CronTask;
 
-pub struct SendDummyEventTask;
+pub struct StartFerienUpdate;
 
 #[async_trait]
-impl CronTask for SendDummyEventTask {
+impl CronTask for StartFerienUpdateTask {
     fn name(&self) -> &'static str {
         "StartFerienUpdate"
     }
