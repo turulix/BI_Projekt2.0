@@ -12,11 +12,11 @@ pub struct SendDummyEventTask;
 #[async_trait]
 impl CronTask for SendDummyEventTask {
     fn name(&self) -> &'static str {
-        "SendDummyEvent"
+        "StartFerienUpdate"
     }
 
     fn interval(&self) -> Duration {
-        Duration::from_secs(60 * 5)
+        Duration::from_secs(7*24*60*60)
     }
 
     async fn run(&self, context: &Context) -> Result<(), Error> {
