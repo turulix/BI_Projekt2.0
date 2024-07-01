@@ -1,12 +1,12 @@
 use async_trait::async_trait;
 
 pub use get_sleepover_data::GetSleepoverDataTask;
-pub use send_dummy_event::StartFerienUpdate;
+pub use start_ferien_update::StartFerienUpdate;
 
 use crate::context::Context;
 
 mod get_sleepover_data;
-mod send_dummy_event;
+mod start_ferien_update;
 
 #[async_trait]
 pub trait CronTask: Send + Sync {
