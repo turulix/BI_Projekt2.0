@@ -1,7 +1,7 @@
 use async_trait::async_trait;
 
 pub use get_sleepover_data::GetSleepoverDataTask;
-pub use send_dummy_event::SendDummyEventTask;
+pub use send_dummy_event::StartFerienUpdate;
 
 use crate::context::Context;
 
