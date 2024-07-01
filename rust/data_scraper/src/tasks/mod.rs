@@ -1,7 +1,7 @@
 use async_trait::async_trait;
 
 pub use get_sleepover_data::GetSleepoverDataTask;
-pub use start_ferien_update::StartFerienUpdate;
+pub use start_ferien_update::StartFerienUpdateTask;
 
 use crate::context::Context;
 

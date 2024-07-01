@@ -7,7 +7,7 @@ use google_cloud_googleapis::pubsub::v1::PubsubMessage;
 use crate::context::Context;
 use crate::tasks::CronTask;
 
-pub struct StartFerienUpdate;
+pub struct StartFerienUpdateTask;
 
 #[async_trait]
 impl CronTask for StartFerienUpdateTask {
@@ -16,7 +16,7 @@ impl CronTask for StartFerienUpdateTask {
     }
 
     fn interval(&self) -> Duration {
-        Duration::from_secs(7*24*60*60)
+        Duration::from_secs(7 * 24 * 60 * 60)
     }
 
     async fn run(&self, context: &Context) -> Result<(), Error> {

@@ -34,7 +34,7 @@ async fn main() -> Result<(), anyhow::Error> {
 
     let tasks: Vec<Box<dyn CronTask>> = vec![
         tasks::GetSleepoverDataTask.into_boxed(),
-        tasks::StartFerienUpdate.into_boxed(),
+        tasks::StartFerienUpdateTask.into_boxed(),
     ];
 
     let mut join_set = JoinSet::new();
